@@ -7,24 +7,15 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Validate tools.json
         run: |
@@ -44,7 +35,7 @@ jobs:
           for i, t in enumerate(tools):
               missing = REQUIRED - t.keys()
               if missing:
-                  print(f'Tool #{i} missing fields: {missing}')
+                  print(f'Tool #{i} ({t.get(\"id\",\"?\")}) missing fields: {missing}')
                   sys.exit(1)
               if t['id'] in ids:
                   print(f'Duplicate id: {t[\"id\"]}')
@@ -56,6 +47,20 @@ jobs:
 
           print(f'tools.json OK — {len(tools)} tools validated.')
           "
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
