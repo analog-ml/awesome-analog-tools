@@ -17,35 +17,56 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate tools.json
+      - name: Validate data files
         run: |
           python3 -c "
           import json, sys
 
-          REQUIRED = {'id','name','description','url','category','tags','license','stars','owner'}
-          VALID_CATS = {
-            'simulator','layout','pdk','schematic','rf-microwave',
-            'mixed-signal','waveform','characterization','framework','research'
-          }
+          def load(path):
+              with open(path) as f:
+                  return json.load(f)
 
-          with open('data/tools.json') as f:
-              tools = json.load(f)
+          errors = []
 
+          # tools.json
+          TOOL_REQ = {'id','name','description','url','category','tags','license','stars','owner'}
+          VALID_CATS = {'simulator','layout','pdk','schematic','rf-microwave',
+                        'mixed-signal','waveform','characterization','framework','research'}
+          tools = load('data/tools.json')
           ids = set()
           for i, t in enumerate(tools):
-              missing = REQUIRED - t.keys()
-              if missing:
-                  print(f'Tool #{i} ({t.get(\"id\",\"?\")}) missing fields: {missing}')
-                  sys.exit(1)
-              if t['id'] in ids:
-                  print(f'Duplicate id: {t[\"id\"]}')
-                  sys.exit(1)
-              ids.add(t['id'])
-              if t['category'] not in VALID_CATS:
-                  print(f'Invalid category \"{t[\"category\"]}\" in tool \"{t[\"id\"]}\"')
-                  sys.exit(1)
+              miss = TOOL_REQ - t.keys()
+              if miss: errors.append(f'tools[{i}] missing {miss}')
+              if t.get('id') in ids: errors.append(f'tools duplicate id: {t[\"id\"]}')
+              ids.add(t.get('id'))
+              if t.get('category') not in VALID_CATS: errors.append(f'tools[{i}] bad category: {t.get(\"category\")}')
 
-          print(f'tools.json OK — {len(tools)} tools validated.')
+          # papers.json
+          PAPER_REQ = {'id','title','abstract','venue','year','pdf','tasks','methods','repos'}
+          papers = load('data/papers.json')
+          pids = set()
+          for i, p in enumerate(papers):
+              miss = PAPER_REQ - p.keys()
+              if miss: errors.append(f'papers[{i}] missing {miss}')
+              if p.get('id') in pids: errors.append(f'papers duplicate id: {p[\"id\"]}')
+              pids.add(p.get('id'))
+
+          # datasets.json
+          DS_REQ = {'id','name','description','url','tasks','license','papers','tags'}
+          datasets = load('data/datasets.json')
+          dids = set()
+          for i, d in enumerate(datasets):
+              miss = DS_REQ - d.keys()
+              if miss: errors.append(f'datasets[{i}] missing {miss}')
+              if d.get('id') in dids: errors.append(f'datasets duplicate id: {d[\"id\"]}')
+              dids.add(d.get('id'))
+              for pid in d.get('papers', []):
+                  if pid not in pids: errors.append(f'datasets[{i}] references unknown paper id: {pid}')
+
+          if errors:
+              for e in errors: print(e)
+              sys.exit(1)
+          print(f'OK — {len(tools)} tools, {len(papers)} papers, {len(datasets)} datasets')
           "
 
   deploy:
