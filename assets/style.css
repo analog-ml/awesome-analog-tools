@@ -50,7 +50,7 @@ header {
   gap: 1.25rem;
 }
 .brand { display: flex; align-items: center; gap: .6rem; flex-shrink: 0; }
-.brand-icon { font-size: 1.3rem; line-height: 1; }
+.brand-icon { flex-shrink: 0; display: block; }
 .brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: -.02em; white-space: nowrap; }
 
 .header-search {
