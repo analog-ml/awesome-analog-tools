@@ -1,0 +1,96 @@
+name: "Add a Tool"
+description: "Suggest a new open-source analog tool to include in the catalog."
+title: "Add tool: "
+labels: ["new-tool"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a tool! Fill out the fields below and a maintainer will add it to the catalog.
+        All tools must be **open-source** and relevant to **analog, mixed-signal, or RF** design.
+
+  - type: input
+    id: name
+    attributes:
+      label: Tool Name
+      placeholder: "e.g. ngspice"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Repository URL
+      placeholder: "https://github.com/org/repo"
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Project Website (optional)
+      placeholder: "https://example.com"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "1–2 sentences describing what the tool does and who it's for."
+      placeholder: "A SPICE-compatible circuit simulator that supports…"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - simulator
+        - layout
+        - pdk
+        - schematic
+        - rf-microwave
+        - mixed-signal
+        - waveform
+        - characterization
+        - framework
+        - research
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: "Comma-separated list of languages and keywords (max 8)."
+      placeholder: "Python, SPICE, netlist, mixed-signal"
+    validations:
+      required: true
+
+  - type: input
+    id: license
+    attributes:
+      label: License (SPDX)
+      placeholder: "MIT"
+    validations:
+      required: true
+
+  - type: input
+    id: stars
+    attributes:
+      label: Approximate GitHub Stars
+      placeholder: "1200"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: The tool is open-source (source code publicly available).
+          required: true
+        - label: The tool is relevant to analog, mixed-signal, or RF design.
+          required: true
+        - label: I have searched the existing `data/tools.json` and it is not already listed.
+          required: true
