@@ -25,10 +25,16 @@
   };
 
   /* ── Boot ──────────────────────────────────────────────────────── */
+  function safeFetch(path) {
+    return fetch(path)
+      .then(r => { if (!r.ok) throw new Error(`${r.status} ${path}`); return r.json(); })
+      .catch(err => { console.warn('Data load failed:', err.message); return []; });
+  }
+
   Promise.all([
-    fetch('data/tools.json').then(r => r.json()),
-    fetch('data/papers.json').then(r => r.json()),
-    fetch('data/datasets.json').then(r => r.json()),
+    safeFetch('data/tools.json'),
+    safeFetch('data/papers.json'),
+    safeFetch('data/datasets.json'),
   ]).then(([tools, papers, datasets]) => {
     state.tools = tools;
     state.papers = papers;
@@ -39,7 +45,7 @@
     buildDatasetFilters();
     setTab(hashTab() || 'tools');
     wireSearch();
-  });
+  }).catch(err => console.error('Unexpected boot error:', err));
 
   function hashTab() {
     const h = location.hash.replace('#','');
@@ -75,7 +81,7 @@
 
   /* ── Search wiring ─────────────────────────────────────────────── */
   function wireSearch() {
-    q('#global-search').addEventListener('input', e => {
+    q('#global-search')?.addEventListener('input', e => {
       const v = e.target.value.trim().toLowerCase();
       state.toolsQ = v; state.papersQ = v; state.datasetsQ = v;
       // keep local search inputs in sync
@@ -91,12 +97,13 @@
     const counts = {};
     state.tools.forEach(t => { counts[t.category] = (counts[t.category]||0)+1; });
     const row = q('#tools-pill-row');
+    if (!row) return;
     row.appendChild(makePill('all', `All`, state.tools.length, true, v => { state.toolsCat=v; renderTools(); }));
     Object.entries(CAT_LABELS).forEach(([k,label]) => {
       if (!counts[k]) return;
       row.appendChild(makePill(k, label, counts[k], false, v => { state.toolsCat=v; renderTools(); }));
     });
-    q('#tools-sort').addEventListener('change', e => { state.toolsSort=e.target.value; renderTools(); });
+    q('#tools-sort')?.addEventListener('change', e => { state.toolsSort=e.target.value; renderTools(); });
   }
 
   function renderTools() {
@@ -163,6 +170,7 @@
     const taskCounts = {};
     state.papers.forEach(p => p.tasks.forEach(t => { taskCounts[t]=(taskCounts[t]||0)+1; }));
     const taskRow = q('#papers-task-row');
+    if (!taskRow) return;
     taskRow.appendChild(makePill('all','All',state.papers.length,true,v=>{state.papersTask=v;renderPapers();}));
     Object.entries(TASK_LABELS).forEach(([k,label]) => {
       if (!taskCounts[k]) return;
@@ -177,8 +185,8 @@
       if(ia===-1) return 1; if(ib===-1) return -1; return ia-ib;
     });
     venues.forEach(v => { const o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
-    sel.addEventListener('change', e => { state.papersVenue=e.target.value; renderPapers(); });
-    q('#papers-sort').addEventListener('change', e => { state.papersSort=e.target.value; renderPapers(); });
+    sel?.addEventListener('change', e => { state.papersVenue=e.target.value; renderPapers(); });
+    q('#papers-sort')?.addEventListener('change', e => { state.papersSort=e.target.value; renderPapers(); });
   }
 
   function renderPapers() {
@@ -254,6 +262,7 @@
     const counts = {};
     state.datasets.forEach(d => d.tasks.forEach(t => { counts[t]=(counts[t]||0)+1; }));
     const row = q('#datasets-task-row');
+    if (!row) return;
     row.appendChild(makePill('all','All',state.datasets.length,true,v=>{state.datasetsTask=v;renderDatasets();}));
     Object.entries(TASK_LABELS).forEach(([k,label]) => {
       if (!counts[k]) return;
