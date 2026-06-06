@@ -1,0 +1,103 @@
+name: "Add a Paper"
+description: "Suggest a research paper with open-source code to include in the catalog."
+title: "Add paper: "
+labels: ["new-paper"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a paper! Fill out the fields below and a maintainer will add it to `data/papers.json`.
+        The paper must be relevant to **analog, mixed-signal, or RF EDA** and have at least one public code implementation.
+
+  - type: input
+    id: title
+    attributes:
+      label: Paper Title
+      placeholder: "ALIGN: Open-Source Analog Layout Automation from the Ground Up"
+    validations:
+      required: true
+
+  - type: input
+    id: pdf
+    attributes:
+      label: Paper URL (PDF / arXiv / DOI)
+      placeholder: "https://arxiv.org/abs/... or https://dl.acm.org/doi/..."
+    validations:
+      required: true
+
+  - type: input
+    id: venue
+    attributes:
+      label: Venue / Journal
+      description: "Conference or journal abbreviation, e.g. DAC, ICCAD, DATE, TCAD, arXiv"
+      placeholder: "DAC"
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Year
+      placeholder: "2023"
+    validations:
+      required: true
+
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Short Abstract / Summary
+      description: "1–3 sentences describing what the paper proposes and its contribution."
+      placeholder: "This paper presents..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tasks
+    attributes:
+      label: EDA Tasks (select all that apply)
+      multiple: true
+      options:
+        - analog-layout
+        - circuit-sizing
+        - placement
+        - routing
+        - schematic-generation
+        - device-modeling
+        - performance-prediction
+        - parasitic-extraction
+        - full-flow
+        - yield-optimization
+    validations:
+      required: true
+
+  - type: input
+    id: methods
+    attributes:
+      label: Methods / Techniques
+      description: "Comma-separated keywords, e.g. GNN, reinforcement-learning, constraint-based"
+      placeholder: "constraint-based, ILP, optimization"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repos
+    attributes:
+      label: Code Repository / Repositories
+      description: "One repo per line — GitHub URL and approximate star count."
+      placeholder: |
+        https://github.com/org/repo — 500 stars
+        https://github.com/org/repo2 — 120 stars
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: The paper is relevant to analog, mixed-signal, or RF EDA.
+          required: true
+        - label: At least one linked repository is publicly accessible.
+          required: true
+        - label: I have searched `data/papers.json` and this paper is not already listed.
+          required: true
