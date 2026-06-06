@@ -6,7 +6,7 @@ Thank you for helping grow this catalog! There are two ways to add a tool.
 
 ## Option 1 — Open an Issue (easiest)
 
-Use the **[Add Tool issue template](https://github.com/analog-ml/opensource-analog-tools/issues/new?template=add-tool.yml)** and fill in the form. A maintainer will add it to `data/tools.json` and merge it.
+Use the **[Add Tool issue template](https://github.com/analog-ml/awesome-analog-tools/issues/new?template=add-tool.yml)** and fill in the form. A maintainer will add it to `data/tools.json` and merge it.
 
 ---
 
@@ -75,4 +75,4 @@ Use the **[Add Tool issue template](https://github.com/analog-ml/opensource-anal
 
 ## Questions?
 
-Open a [GitHub Discussion](https://github.com/analog-ml/opensource-analog-tools/discussions) or ping the maintainers in the issue.
+Open a [GitHub Discussion](https://github.com/analog-ml/awesome-analog-tools/discussions) or ping the maintainers in the issue.
