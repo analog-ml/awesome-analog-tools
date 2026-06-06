@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    types: [opened, synchronize, reopened, closed]
   workflow_dispatch:
 
 concurrency:
@@ -12,7 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ── Validate JSON data files (skipped on PR close — nothing to validate) ──
   validate:
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -69,30 +71,41 @@ jobs:
           print(f'OK — {len(tools)} tools, {len(papers)} papers, {len(datasets)} datasets')
           "
 
+  # ── Deploy main branch to root of gh-pages ───────────────────────────────
   deploy:
     needs: validate
     if: github.ref == 'refs/heads/main'
     permissions:
       contents: write
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          enablement: true
+          branch: gh-pages
+          folder: .
+          clean: true
+          clean-exclude: pr-preview  # don't wipe active PR previews
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+  # ── Deploy / remove PR preview on the gh-pages branch ────────────────────
+  preview:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    concurrency:
+      group: preview-${{ github.ref }}
+      cancel-in-progress: false  # always let cleanup finish on PR close
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy PR preview
+        uses: rossjrw/pr-preview-action@v1
         with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          source-dir: .
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
