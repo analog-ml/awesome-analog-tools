@@ -1,0 +1,108 @@
+name: "Add a Dataset"
+description: "Suggest an open-source dataset or benchmark used in analog EDA research."
+title: "Add dataset: "
+labels: ["new-dataset"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a dataset! Fill out the fields below and a maintainer will add it to `data/datasets.json`.
+        The dataset must be **publicly accessible** and relevant to **analog, mixed-signal, or RF EDA** research.
+
+  - type: input
+    id: name
+    attributes:
+      label: Dataset Name
+      placeholder: "CircuitNet"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Repository / Download URL
+      placeholder: "https://github.com/org/repo"
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Website (optional)
+      placeholder: "https://circuitnet.github.io/"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "2–3 sentences: what it contains, how it was generated, and what it's used for."
+      placeholder: "This dataset contains..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tasks
+    attributes:
+      label: EDA Tasks (select all that apply)
+      multiple: true
+      options:
+        - analog-layout
+        - circuit-sizing
+        - placement
+        - routing
+        - schematic-generation
+        - device-modeling
+        - performance-prediction
+        - parasitic-extraction
+        - full-flow
+        - yield-optimization
+    validations:
+      required: true
+
+  - type: input
+    id: size
+    attributes:
+      label: Dataset Size (approximate)
+      placeholder: "~200 GB"
+
+  - type: input
+    id: format
+    attributes:
+      label: File Format(s)
+      placeholder: "numpy / HDF5"
+
+  - type: input
+    id: license
+    attributes:
+      label: License (SPDX)
+      placeholder: "CC BY 4.0"
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: "Comma-separated keywords describing the content."
+      placeholder: "routing-congestion, IR-drop, DRC, timing"
+    validations:
+      required: true
+
+  - type: input
+    id: papers
+    attributes:
+      label: Associated Paper(s) (optional)
+      description: "Paper title(s) or arXiv links that introduced or use this dataset."
+      placeholder: "CircuitNet: An Open-Source Dataset... (arXiv:2208.01040)"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: The dataset is publicly accessible (no login or paywall required).
+          required: true
+        - label: The dataset is relevant to analog, mixed-signal, or RF EDA research.
+          required: true
+        - label: I have searched `data/datasets.json` and this dataset is not already listed.
+          required: true
