@@ -67,28 +67,40 @@ jobs:
           LABEL:     ${{ steps.parse.outputs.label }}
         run: gh issue edit "$ISSUE_NUM" --add-label "$LABEL"
 
-      # ── Create branch → commit → push → open PR → comment (success) ──────
-      - name: Create PR
+      # ── Push branch and open PR ───────────────────────────────────────────
+      # gh pr create requires a PAT because the org disables Actions from
+      # creating PRs (org-level setting that cannot be overridden per-repo).
+      # Add a fine-grained PAT with "Pull requests: write" + "Contents: write"
+      # as a repo secret named GH_PAT.
+      - name: Push branch
         if: steps.parse.outputs.success == 'true'
         env:
           GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
           BRANCH:      ${{ steps.parse.outputs.branch }}
-          PR_TITLE:    ${{ steps.parse.outputs.pr_title }}
           DATA_FILE:   ${{ steps.parse.outputs.data_file }}
           ENTRY_KIND:  ${{ steps.parse.outputs.kind }}
           ENTRY_ID:    ${{ steps.parse.outputs.entry_id }}
-          ENTRY_LABEL: ${{ steps.parse.outputs.label }}
           ISSUE_NUM:   ${{ github.event.issue.number }}
-          ISSUE_USER:  ${{ github.event.issue.user.login }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git checkout -b "$BRANCH"
           git add "$DATA_FILE"
           git commit -m "Add ${ENTRY_KIND}: ${ENTRY_ID} (closes #${ISSUE_NUM})"
           git push origin "$BRANCH"
 
+      - name: Create PR
+        if: steps.parse.outputs.success == 'true'
+        env:
+          # Use PAT — GITHUB_TOKEN is blocked from creating PRs by org policy
+          GH_TOKEN:    ${{ secrets.GH_PAT }}
+          BRANCH:      ${{ steps.parse.outputs.branch }}
+          PR_TITLE:    ${{ steps.parse.outputs.pr_title }}
+          DATA_FILE:   ${{ steps.parse.outputs.data_file }}
+          ENTRY_LABEL: ${{ steps.parse.outputs.label }}
+          ISSUE_NUM:   ${{ github.event.issue.number }}
+          ISSUE_USER:  ${{ github.event.issue.user.login }}
+        run: |
           cat > /tmp/pr-body.md << PRBODY
           Closes #${ISSUE_NUM}
 
@@ -108,7 +120,8 @@ jobs:
 
           echo "PR created: $PR_URL"
 
-          gh issue comment "$ISSUE_NUM" --body \
+          # Comment on the issue using GITHUB_TOKEN (always available)
+          GH_TOKEN="${{ secrets.GITHUB_TOKEN }}" gh issue comment "$ISSUE_NUM" --body \
             "Thanks @${ISSUE_USER}! A pull request has been automatically opened: ${PR_URL}
 
           A maintainer will review and merge it shortly. If anything looks off you can edit the JSON directly in the PR."
