@@ -73,31 +73,6 @@
     ]
   },
   {
-    "id": "circuitnet-2022",
-    "title": "CircuitNet: An Open-Source Dataset for Machine Learning Applications in Electronic Design Automation",
-    "abstract": "CircuitNet is a large-scale open-source dataset containing over 20,000 chip designs generated from commercial EDA tools, providing routing congestion maps, IR drop, DRC violations, and timing information. It benchmarks ML models for physical design prediction tasks.",
-    "venue": "SCIENCE CHINA",
-    "year": 2022,
-    "pdf": "https://arxiv.org/abs/2208.01040",
-    "tasks": [
-      "performance-prediction",
-      "placement",
-      "routing"
-    ],
-    "methods": [
-      "CNN",
-      "GNN",
-      "benchmark-dataset"
-    ],
-    "repos": [
-      {
-        "name": "circuitnet/CircuitNet",
-        "url": "https://github.com/circuitnet/CircuitNet",
-        "stars": 350
-      }
-    ]
-  },
-  {
     "id": "gnn-analog-sizing-2021",
     "title": "GCN-RL Circuit Designer: Transferable Transistor Sizing with Graph Neural Networks and Reinforcement Learning",
     "abstract": "This paper introduces a learning-based framework for automatic transistor sizing using graph convolutional networks combined with reinforcement learning. By representing circuits as graphs, the model transfers knowledge across different technologies and circuit topologies to improve optimization efficiency.",
