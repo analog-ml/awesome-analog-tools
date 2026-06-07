@@ -465,5 +465,31 @@
         "stars": 3
       }
     ]
+  },
+  {
+    "id": "differentiable-neural-network-2023",
+    "title": "Differentiable Neural Network Surrogate Models for gm/ID-based Analog IC Sizing Optimization",
+    "abstract": "This paper presents an improved optimization flow for analog integrated circuit sizing that integrates the gm/ID design methodology with machine learning\u2013based surrogate models. It replaces expensive circuit simulations with neural networks that predict performance metrics, achieving ~3400\u00d7 speedup and enabling gradient-based optimization methods like automatic differentiation. The approach is demonstrated on operational amplifier sizing and supports better reuse of designs across technology nodes.",
+    "venue": "MLCAD",
+    "year": 2023,
+    "pdf": "https://ieeexplore.ieee.org/document/10299834",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "circuit-sizing",
+      "gm/id-method",
+      "optimization-flow",
+      "op-amp-design",
+      "automatic-differentiation",
+      "technology-migration"
+    ],
+    "repos": [
+      {
+        "name": "electronics-and-drives/MLCAD2023",
+        "url": "https://github.com/electronics-and-drives/MLCAD2023",
+        "stars": 5
+      }
+    ]
   }
 ]
