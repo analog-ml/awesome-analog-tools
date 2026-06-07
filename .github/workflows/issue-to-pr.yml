@@ -1,16 +1,19 @@
 name: Issue → Pull Request
 
+# Trigger on 'labeled' not 'opened': issue form labels are applied
+# asynchronously after the opened event, so the label array is empty
+# when 'opened' fires — causing the job to be skipped.
 on:
   issues:
-    types: [opened]
+    types: [labeled]
 
 jobs:
   create-pr:
-    # Only run for the three contribution issue forms
+    # github.event.label.name is the label just added (reliable on 'labeled' event)
     if: >-
-      contains(github.event.issue.labels.*.name, 'new-tool') ||
-      contains(github.event.issue.labels.*.name, 'new-paper') ||
-      contains(github.event.issue.labels.*.name, 'new-dataset')
+      github.event.label.name == 'new-tool' ||
+      github.event.label.name == 'new-paper' ||
+      github.event.label.name == 'new-dataset'
 
     runs-on: ubuntu-latest
     permissions:
@@ -21,14 +24,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # ── Debug: log event context to help diagnose future failures ─────────
+      - name: Debug event context
+        run: |
+          echo "=== Event context ==="
+          echo "Event name   : ${{ github.event_name }}"
+          echo "Issue number : ${{ github.event.issue.number }}"
+          echo "Label added  : ${{ github.event.label.name }}"
+          echo "Issue labels : ${{ toJson(github.event.issue.labels.*.name) }}"
+          echo "Issue title  : ${{ github.event.issue.title }}"
+          echo "Issue user   : ${{ github.event.issue.user.login }}"
+          echo "=== Issue body (first 500 chars) ==="
+          echo '${{ github.event.issue.body }}' | head -c 500
+
       # ── Parse issue body and append entry to the JSON data file ──────────
       - name: Parse issue and update JSON
         id: parse
         env:
-          ISSUE_BODY:   ${{ github.event.issue.body }}
-          ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY:        ${{ github.event.issue.body }}
+          ISSUE_LABEL_ADDED: ${{ github.event.label.name }}
+          ISSUE_NUMBER:      ${{ github.event.issue.number }}
         run: python3 .github/scripts/issue_to_json.py
+
+      # ── Log parse outputs for debugging ──────────────────────────────────
+      - name: Debug parse outputs
+        run: |
+          echo "=== Parse outputs ==="
+          echo "success   : ${{ steps.parse.outputs.success }}"
+          echo "kind      : ${{ steps.parse.outputs.kind }}"
+          echo "entry_id  : ${{ steps.parse.outputs.entry_id }}"
+          echo "data_file : ${{ steps.parse.outputs.data_file }}"
+          echo "branch    : ${{ steps.parse.outputs.branch }}"
+          echo "pr_title  : ${{ steps.parse.outputs.pr_title }}"
+          echo "error     : ${{ steps.parse.outputs.error }}"
 
       # ── Create branch → commit → push → open PR → comment (success) ──────
       - name: Create PR
@@ -69,6 +97,8 @@ jobs:
             --body-file /tmp/pr-body.md \
             --label  "$ENTRY_LABEL" \
             --head   "$BRANCH")
+
+          echo "PR created: $PR_URL"
 
           gh issue comment "$ISSUE_NUM" --body \
             "Thanks @${ISSUE_USER}! A pull request has been automatically opened: ${PR_URL}
