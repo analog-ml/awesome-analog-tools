@@ -439,5 +439,31 @@
         "stars": 2
       }
     ]
+  },
+  {
+    "id": "kclnet-electrically-equivalen-2025",
+    "title": "KCLNet: Electrically Equivalence-Oriented Graph Representation Learning for Analog Circuits",
+    "abstract": "KCLNet is a graph representation learning framework for analog circuits that incorporates electrical priors, specifically Kirchhoff\u2019s Current Law, to guide message passing in a DAG-based circuit representation. By enforcing current-conservation constraints through an asynchronous GNN and contrastive learning, it learns physically consistent circuit embeddings that improve performance on tasks like circuit classification, subcircuit detection, and graph edit distance prediction.",
+    "venue": "AAAI",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2603.24101",
+    "tasks": [
+      "device-modeling"
+    ],
+    "methods": [
+      "circuit-representation",
+      "gnn",
+      "kirchhoffs",
+      "pinn",
+      "contrastive-learning",
+      "subcircuit-detection"
+    ],
+    "repos": [
+      {
+        "name": "shipxu123/KCLNet",
+        "url": "https://github.com/shipxu123/KCLNet",
+        "stars": 3
+      }
+    ]
   }
 ]
