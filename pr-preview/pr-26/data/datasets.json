@@ -1,0 +1,236 @@
+[
+  {
+    "id": "circuitnet",
+    "name": "CircuitNet",
+    "description": "Large-scale open dataset with 20,000+ chip designs from commercial EDA tools. Provides routing congestion maps, IR drop heatmaps, DRC hotspots, and timing slack data. The canonical benchmark for ML-based physical design prediction.",
+    "url": "https://github.com/circuitnet/CircuitNet",
+    "website": "https://circuitnet.github.io/",
+    "tasks": [
+      "performance-prediction",
+      "placement",
+      "routing"
+    ],
+    "size": "~200 GB",
+    "format": "numpy / HDF5",
+    "license": "CC BY 4.0",
+    "papers": [
+      "circuitnet-2022"
+    ],
+    "tags": [
+      "routing-congestion",
+      "IR-drop",
+      "DRC",
+      "timing"
+    ]
+  },
+  {
+    "id": "ispd2018-route",
+    "name": "ISPD 2018 Initial Detailed Routing Contest",
+    "description": "Official benchmark suite from the ISPD 2018 detailed routing contest. Contains industrial-strength designs with complex multi-cut via rules, preferred routing directions, and spacing constraints representative of 7nm-class processes.",
+    "url": "https://github.com/The-OpenROAD-Project/ispd18eval",
+    "website": "http://www.ispd.cc/contests/18/ispd2018_contest.html",
+    "tasks": [
+      "routing"
+    ],
+    "size": "~2 GB",
+    "format": "LEF/DEF",
+    "license": "Contest",
+    "papers": [
+      "tritonroute-2020"
+    ],
+    "tags": [
+      "detailed-routing",
+      "7nm",
+      "LEF/DEF",
+      "multi-cut-via"
+    ]
+  },
+  {
+    "id": "openroad-benchmarks",
+    "name": "OpenROAD Flow Benchmarks",
+    "description": "A curated set of open-source RTL designs (RISC-V cores, memory controllers, DSP blocks) used to benchmark the OpenROAD flow across SKY130, GF180MCU, and ASAP7 PDKs. Covers a wide range of design sizes and complexities.",
+    "url": "https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts",
+    "website": "https://openroad.readthedocs.io/",
+    "tasks": [
+      "placement",
+      "routing",
+      "full-flow"
+    ],
+    "size": "~500 MB",
+    "format": "Verilog / LEF/DEF",
+    "license": "BSD",
+    "papers": [
+      "openroad-2020"
+    ],
+    "tags": [
+      "RTL",
+      "RISC-V",
+      "SKY130",
+      "ASAP7",
+      "physical-design"
+    ]
+  },
+  {
+    "id": "sky130-analog-examples",
+    "name": "SKY130 Open Analog Design Examples",
+    "description": "Collection of open-source analog circuit designs (op-amps, LDOs, PLLs, ring oscillators, bandgaps) taped out or validated on the SkyWater 130nm process. Includes schematics, layout, simulations, and post-layout extracted netlists.",
+    "url": "https://github.com/efabless/caravel_user_project_analog",
+    "website": "https://platform.efabless.com/",
+    "tasks": [
+      "analog-layout",
+      "circuit-sizing"
+    ],
+    "size": "~1 GB",
+    "format": "GDS / SPICE / KLayout",
+    "license": "Apache-2.0",
+    "papers": [
+      "openfasoc-2022"
+    ],
+    "tags": [
+      "SKY130",
+      "op-amp",
+      "LDO",
+      "GDS",
+      "open-silicon"
+    ]
+  },
+  {
+    "id": "align-benchmarks",
+    "name": "ALIGN Analog Layout Benchmarks",
+    "description": "Benchmark netlists for analog layout automation research, including folded-cascode op-amps, telescopic op-amps, current mirrors, and comparators. Each circuit includes a reference manual layout and performance specs for evaluating automated layout quality.",
+    "url": "https://github.com/ALIGN-analoglayout/ALIGN-public/tree/master/tests",
+    "website": "https://align-analoglayout.github.io/ALIGN-public/",
+    "tasks": [
+      "analog-layout",
+      "placement",
+      "routing"
+    ],
+    "size": "~50 MB",
+    "format": "SPICE / JSON",
+    "license": "BSD",
+    "papers": [
+      "align-2019"
+    ],
+    "tags": [
+      "op-amp",
+      "current-mirror",
+      "comparator",
+      "SPICE",
+      "analog-layout"
+    ]
+  },
+  {
+    "id": "magical-benchmarks",
+    "name": "MAGICAL Layout Benchmarks",
+    "description": "Layout benchmark suite from the MAGICAL project covering operational amplifiers, bandgap references, and switched-capacitor circuits. Includes both TSMC 65nm and TSMC 16nm FinFET target technologies.",
+    "url": "https://github.com/magical-eda/MAGICAL/tree/master/Benchmarks",
+    "website": "https://github.com/magical-eda/MAGICAL",
+    "tasks": [
+      "analog-layout",
+      "placement"
+    ],
+    "size": "~30 MB",
+    "format": "SPICE / LEF",
+    "license": "BSD",
+    "papers": [
+      "magical-2019"
+    ],
+    "tags": [
+      "bandgap",
+      "op-amp",
+      "FinFET",
+      "65nm",
+      "16nm"
+    ]
+  },
+  {
+    "id": "autockt-dataset",
+    "name": "AutoCkt Analog Sizing Dataset",
+    "description": "Simulation dataset of op-amp and two-stage amplifier SPICE simulations generated for training and evaluating RL-based circuit sizing agents. Contains device sizes, bias conditions, and corresponding performance metrics (gain, bandwidth, phase margin, power).",
+    "url": "https://github.com/ksettaluri6/AutoCkt",
+    "website": "https://arxiv.org/abs/2001.01808",
+    "tasks": [
+      "circuit-sizing",
+      "performance-prediction"
+    ],
+    "size": "~2 GB",
+    "format": "CSV / Python pickle",
+    "license": "BSD",
+    "papers": [
+      "autockt-2020"
+    ],
+    "tags": [
+      "op-amp",
+      "SPICE",
+      "reinforcement-learning",
+      "performance-metrics"
+    ]
+  },
+  {
+    "id": "probe3-benchmarks",
+    "name": "PROBE3.0 Design-Technology Pathfinding Benchmarks",
+    "description": "Benchmark suite for evaluating standard cell library design, routing resource estimation, and PPA tradeoffs across technology nodes. Used for design-technology co-optimization research and reproducible pathfinding studies.",
+    "url": "https://github.com/ABKGroup/PROBE3.0",
+    "website": "https://abkgroup.ucsd.edu/",
+    "tasks": [
+      "placement",
+      "routing",
+      "performance-prediction"
+    ],
+    "size": "~100 MB",
+    "format": "LEF/DEF / Liberty",
+    "license": "BSD",
+    "papers": [
+      "probe3-2022"
+    ],
+    "tags": [
+      "standard-cell",
+      "pathfinding",
+      "PPA",
+      "technology-scaling"
+    ]
+  },
+  {
+    "id": "circuitformer",
+    "name": "CircuitFormer",
+    "description": "130,409 ngspice-simulated SPICE netlists on the open-source SkyWater SKY130 PDK, unified from three upstream sources into a single HuggingFace-loadable schema with deterministic topology-aware train/validation/test splits. Designed as a supervised (SPICE netlist \u2192 performance metrics) corpus for training of models for analog circuit design.",
+    "url": "https://huggingface.co/datasets/touhid314/cktformer-dataset",
+    "website": "",
+    "tasks": [
+      "schematic-generation",
+      "circuit-sizing",
+      "performance-prediction"
+    ],
+    "size": "~167 MB",
+    "format": "CSV",
+    "license": "Apache 2.0",
+    "papers": [],
+    "tags": [
+      "performance-prediction",
+      "sizing",
+      "topology-retrieval",
+      "topology-classification"
+    ]
+  },
+  {
+    "id": "analoggym-an-open-and-practical-testing-suite-for-",
+    "name": "AnalogGym: An Open and Practical Testing Suite for Analog Circuit Synthesis",
+    "description": "AnalogGym encompasses 30 circuit topologies in five key categories: sensing front ends, voltage references, AMPs, low dropout regulators (LDOs), and phase-locked loops (PLLs). Among these, the LDOs and AMPs support the open-source [Ngspice](https://ngspice.sourceforge.io/) simulator and the [SkyWater](https://github.com/google/skywater-pdk)  process design kit (PDK), allowing for greater accessibility and reproducibility.",
+    "url": "https://github.com/CODA-Team/AnalogGym",
+    "website": "https://github.com/CODA-Team/AnalogGym",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "size": "~45 MB",
+    "format": "CIR",
+    "license": "BSD-3-Clause",
+    "papers": [],
+    "tags": [
+      "sensing-front-ends",
+      "voltage-references",
+      "LDO",
+      "PLL",
+      "amplifiers"
+    ]
+  }
+]
