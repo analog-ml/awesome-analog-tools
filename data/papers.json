@@ -152,7 +152,7 @@
     "year": 2025,
     "pdf": "https://proceedings.mlr.press/v267/gao25a.html",
     "tasks": [
-      "device-modeling"
+      "topology-modeling"
     ],
     "methods": [
       "circuit-design",
@@ -177,7 +177,7 @@
     "year": 2025,
     "pdf": "https://arxiv.org/abs/2603.24101",
     "tasks": [
-      "device-modeling"
+      "circuit-representation"
     ],
     "methods": [
       "circuit-representation",
