@@ -200,23 +200,36 @@ def build_dataset(fields, existing_ids):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+def detect_kind(body):
+    """Detect form type from unique field headers present in the body."""
+    if "### Tool Name" in body:
+        return "tool", "data/tools.json"
+    if "### Paper Title" in body:
+        return "paper", "data/papers.json"
+    if "### Dataset Name" in body:
+        return "dataset", "data/datasets.json"
+    return None, None
+
+
 def main():
-    body          = os.environ.get("ISSUE_BODY", "")
-    label_added   = os.environ.get("ISSUE_LABEL_ADDED", "")
-    issue_number  = os.environ.get("ISSUE_NUMBER", "0")
+    body         = os.environ.get("ISSUE_BODY", "")
+    issue_number = os.environ.get("ISSUE_NUMBER", "0")
 
-    print(f"DEBUG label_added={label_added!r}  issue_number={issue_number}")
+    print(f"DEBUG issue_number={issue_number}")
+    print(f"DEBUG body_length={len(body)}")
 
-    # Route by the specific label that was just applied (reliable on 'labeled' event)
-    if label_added == "new-tool":
-        kind, data_file = "tool", "data/tools.json"
-    elif label_added == "new-paper":
-        kind, data_file = "paper", "data/papers.json"
-    elif label_added == "new-dataset":
-        kind, data_file = "dataset", "data/datasets.json"
-    else:
-        fail(f"Label `{label_added}` is not a contribution label; nothing to do.")
+    if not body.strip():
+        fail("Issue body is empty — cannot determine form type or parse fields.")
         return
+
+    # Detect which form was submitted from unique body field headers.
+    # This is independent of labels (which may not exist or may be applied late).
+    kind, data_file = detect_kind(body)
+    if not kind:
+        fail("Could not identify the form type. Expected one of: '### Tool Name', '### Paper Title', or '### Dataset Name' in the body.")
+        return
+
+    print(f"DEBUG detected kind={kind!r}  data_file={data_file!r}")
 
     fields = parse_body(body)
     if not fields:
