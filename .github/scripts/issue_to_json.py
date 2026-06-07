@@ -201,24 +201,21 @@ def build_dataset(fields, existing_ids):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    body         = os.environ.get("ISSUE_BODY", "")
-    labels_raw   = os.environ.get("ISSUE_LABELS", "[]")
-    issue_number = os.environ.get("ISSUE_NUMBER", "0")
+    body          = os.environ.get("ISSUE_BODY", "")
+    label_added   = os.environ.get("ISSUE_LABEL_ADDED", "")
+    issue_number  = os.environ.get("ISSUE_NUMBER", "0")
 
-    try:
-        labels = json.loads(labels_raw)
-    except Exception:
-        labels = []
+    print(f"DEBUG label_added={label_added!r}  issue_number={issue_number}")
 
-    # Route by label
-    if "new-tool" in labels:
+    # Route by the specific label that was just applied (reliable on 'labeled' event)
+    if label_added == "new-tool":
         kind, data_file = "tool", "data/tools.json"
-    elif "new-paper" in labels:
+    elif label_added == "new-paper":
         kind, data_file = "paper", "data/papers.json"
-    elif "new-dataset" in labels:
+    elif label_added == "new-dataset":
         kind, data_file = "dataset", "data/datasets.json"
     else:
-        fail("Issue has no recognised label (`new-tool`, `new-paper`, or `new-dataset`).")
+        fail(f"Label `{label_added}` is not a contribution label; nothing to do.")
         return
 
     fields = parse_body(body)
