@@ -1,19 +1,21 @@
 name: Issue → Pull Request
 
-# Trigger on 'labeled' not 'opened': issue form labels are applied
-# asynchronously after the opened event, so the label array is empty
-# when 'opened' fires — causing the job to be skipped.
+# Use 'opened' (not 'labeled'): labels from issue form templates are applied
+# asynchronously and were never being set because the labels didn't exist in
+# the repo. Instead we detect the form type from unique body field headers,
+# and apply the label ourselves inside the workflow.
 on:
   issues:
-    types: [labeled]
+    types: [opened]
 
 jobs:
   create-pr:
-    # github.event.label.name is the label just added (reliable on 'labeled' event)
+    # Guard: only run for issues whose title starts with our form prefixes.
+    # The Python script does the authoritative body-based detection.
     if: >-
-      github.event.label.name == 'new-tool' ||
-      github.event.label.name == 'new-paper' ||
-      github.event.label.name == 'new-dataset'
+      startsWith(github.event.issue.title, 'Add tool:') ||
+      startsWith(github.event.issue.title, 'Add paper:') ||
+      startsWith(github.event.issue.title, 'Add dataset:')
 
     runs-on: ubuntu-latest
     permissions:
@@ -24,32 +26,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ── Debug: log event context to help diagnose future failures ─────────
+      # ── Debug: log event context ──────────────────────────────────────────
       - name: Debug event context
         run: |
           echo "=== Event context ==="
-          echo "Event name   : ${{ github.event_name }}"
-          echo "Issue number : ${{ github.event.issue.number }}"
-          echo "Label added  : ${{ github.event.label.name }}"
-          echo "Issue labels : ${{ toJson(github.event.issue.labels.*.name) }}"
-          echo "Issue title  : ${{ github.event.issue.title }}"
-          echo "Issue user   : ${{ github.event.issue.user.login }}"
-          echo "=== Issue body (first 500 chars) ==="
-          echo '${{ github.event.issue.body }}' | head -c 500
+          echo "Event      : ${{ github.event_name }}"
+          echo "Issue #    : ${{ github.event.issue.number }}"
+          echo "Issue title: ${{ github.event.issue.title }}"
+          echo "Submitter  : ${{ github.event.issue.user.login }}"
+          echo "=== Issue body (first 800 chars) ==="
+          cat << 'BODYEOF'
+          ${{ github.event.issue.body }}
+          BODYEOF
 
       # ── Parse issue body and append entry to the JSON data file ──────────
       - name: Parse issue and update JSON
         id: parse
         env:
-          ISSUE_BODY:        ${{ github.event.issue.body }}
-          ISSUE_LABEL_ADDED: ${{ github.event.label.name }}
-          ISSUE_NUMBER:      ${{ github.event.issue.number }}
+          ISSUE_BODY:   ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python3 .github/scripts/issue_to_json.py
 
-      # ── Log parse outputs for debugging ──────────────────────────────────
+      # ── Log parse outputs ─────────────────────────────────────────────────
       - name: Debug parse outputs
         run: |
-          echo "=== Parse outputs ==="
           echo "success   : ${{ steps.parse.outputs.success }}"
           echo "kind      : ${{ steps.parse.outputs.kind }}"
           echo "entry_id  : ${{ steps.parse.outputs.entry_id }}"
@@ -57,6 +57,15 @@ jobs:
           echo "branch    : ${{ steps.parse.outputs.branch }}"
           echo "pr_title  : ${{ steps.parse.outputs.pr_title }}"
           echo "error     : ${{ steps.parse.outputs.error }}"
+
+      # ── Apply label to the issue so it's tagged for tracking ─────────────
+      - name: Label issue
+        if: steps.parse.outputs.success == 'true'
+        env:
+          GH_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          LABEL:     ${{ steps.parse.outputs.label }}
+        run: gh issue edit "$ISSUE_NUM" --add-label "$LABEL"
 
       # ── Create branch → commit → push → open PR → comment (success) ──────
       - name: Create PR
@@ -80,7 +89,6 @@ jobs:
           git commit -m "Add ${ENTRY_KIND}: ${ENTRY_ID} (closes #${ISSUE_NUM})"
           git push origin "$BRANCH"
 
-          # Write PR body to a temp file to safely handle special characters
           cat > /tmp/pr-body.md << PRBODY
           Closes #${ISSUE_NUM}
 
@@ -105,7 +113,7 @@ jobs:
 
           A maintainer will review and merge it shortly. If anything looks off you can edit the JSON directly in the PR."
 
-      # ── Comment with the parse error so the submitter can fix it (failure) ─
+      # ── Comment on parse failure ──────────────────────────────────────────
       - name: Comment on parse failure
         if: steps.parse.outputs.success == 'false'
         env:
@@ -118,4 +126,4 @@ jobs:
 
           **Reason:** ${ERROR_MSG}
 
-          Please check that all required fields are filled in and resubmit, or open a PR manually following [CONTRIBUTING.md](https://github.com/${{ github.repository }}/blob/main/CONTRIBUTING.md)."
+          Please check that all required fields are filled in, or open a PR manually by following [CONTRIBUTING.md](https://github.com/${{ github.repository }}/blob/main/CONTRIBUTING.md)."
