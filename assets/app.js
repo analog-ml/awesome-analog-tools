@@ -7,13 +7,34 @@
     framework:'Framework', research:'Research',
   };
   const TASK_LABELS = {
-    'analog-layout':'Analog Layout', 'circuit-sizing':'Circuit Sizing',
-    placement:'Placement', routing:'Routing', 'schematic-generation':'Schematic Gen.',
-    'device-modeling':'Device Modeling', 'performance-prediction':'Perf. Prediction',
-    'parasitic-extraction':'Parasitic Extraction', 'full-flow':'Full-Flow',
-    'yield-optimization':'Yield Optimization',
+    'analog-layout':              'Analog Layout',
+    'circuit-design':             'Circuit Design',
+    'circuit-representation':     'Circuit Repr.',
+    'circuit-sizing':             'Circuit Sizing',
+    'code-generation':            'Code Gen.',
+    'constraint-generation':      'Constraint Gen.',
+    'device-modeling':            'Device Modeling',
+    'floorplanning':              'Floorplanning',
+    'full-flow':                  'Full-Flow',
+    'multi-objective-optimization':'Multi-Obj. Opt.',
+    'netlist-generation':         'Netlist Gen.',
+    'noise-modeling':             'Noise Modeling',
+    'parasitic-extraction':       'Parasitic Extraction',
+    'performance-prediction':     'Perf. Prediction',
+    'placement':                  'Placement',
+    'routing':                    'Routing',
+    'schematic-generation':       'Schematic Gen.',
+    'sensitivity-analysis':       'Sensitivity Analysis',
+    'technology-mapping':         'Tech. Mapping',
+    'topology-generation':        'Topology Gen.',
+    'topology-modeling':          'Topology Modeling',
+    'topology-selection':         'Topology Selection',
+    'topology-synthesis':         'Topology Synthesis',
+    'transfer-learning':          'Transfer Learning',
+    'variation-analysis':         'Variation Analysis',
+    'yield-optimization':         'Yield Optimization',
   };
-  const VENUE_ORDER = ['DAC','ICCAD','DATE','TCAD','TCAS','CICC','ISPD','JSSC','ESSDERC','JOSS','arXiv','SCIENCE CHINA'];
+  const VENUE_ORDER = ['DAC','ICCAD','DATE','TCAD','TCAS','CICC','ISPD','JSSC','ESSDERC','JOSS','ICML','AAAI','MLCAD','arXiv','SCIENCE CHINA'];
 
   /* ── State ─────────────────────────────────────────────────────── */
   const state = {
