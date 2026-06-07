@@ -390,5 +390,29 @@
         "stars": 15
       }
     ]
+  },
+  {
+    "id": "simultaneous-multi-topology-mu-2007",
+    "title": "Simultaneous Multi-Topology Multi-Objective Sizing  Across Thousands of Analog Circuit Topologies",
+    "abstract": "MOJITO is a system for simultaneously optimizing thousands of analog circuit topologies to produce a diverse set of designs that trade off performance metrics. It represents the search space using hierarchical combinations of trusted analog building blocks and avoids manual rule specification by relying on SPICE-based evaluation. The system uses a multi-objective evolutionary algorithm with an age-layered population structure to balance exploration and exploitation, and it is demonstrated on 3,528 operational amplifier topologies.",
+    "venue": "DAC",
+    "year": 2007,
+    "pdf": "https://ieeexplore.ieee.org/document/4261319",
+    "tasks": [
+      "circuit-sizing",
+      "performance-prediction"
+    ],
+    "methods": [
+      "evolutionary-algorithm",
+      "topology-search",
+      "hierarchical-design"
+    ],
+    "repos": [
+      {
+        "name": "trentmc/mojito",
+        "url": "https://github.com/trentmc/mojito",
+        "stars": 12
+      }
+    ]
   }
 ]
