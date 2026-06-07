@@ -41,5 +41,25 @@
       "PLL",
       "amplifiers"
     ]
+  },
+  {
+    "id": "ams-io-bench-and-ams-io-agent-benchmarking-and-str",
+    "name": "AMS-IO-Bench and AMS-IO-Agent: Benchmarking and Structured Reasoning  for Analog and Mixed-Signal Integrated Circuit Input/Output Design",
+    "description": "A comprehensive benchmark dataset for automated IC IO ring generation using LLMs in Cadence Virtuoso.",
+    "url": "https://github.com/Arcadia-1/AMS-IO-Bench",
+    "website": "https://github.com/Arcadia-1/AMS-IO-Agent",
+    "tasks": [
+      "circuit-design",
+      "floorplanning",
+      "placement"
+    ],
+    "size": "",
+    "format": "",
+    "license": "N/A",
+    "papers": [],
+    "tags": [
+      "ring-generation",
+      "LLM"
+    ]
   }
 ]
