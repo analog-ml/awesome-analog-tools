@@ -1,0 +1,91 @@
+name: Issue → Pull Request
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-pr:
+    # Only run for the three contribution issue forms
+    if: >-
+      contains(github.event.issue.labels.*.name, 'new-tool') ||
+      contains(github.event.issue.labels.*.name, 'new-paper') ||
+      contains(github.event.issue.labels.*.name, 'new-dataset')
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── Parse issue body and append entry to the JSON data file ──────────
+      - name: Parse issue and update JSON
+        id: parse
+        env:
+          ISSUE_BODY:   ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python3 .github/scripts/issue_to_json.py
+
+      # ── Create branch → commit → push → open PR → comment (success) ──────
+      - name: Create PR
+        if: steps.parse.outputs.success == 'true'
+        env:
+          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          BRANCH:      ${{ steps.parse.outputs.branch }}
+          PR_TITLE:    ${{ steps.parse.outputs.pr_title }}
+          DATA_FILE:   ${{ steps.parse.outputs.data_file }}
+          ENTRY_KIND:  ${{ steps.parse.outputs.kind }}
+          ENTRY_ID:    ${{ steps.parse.outputs.entry_id }}
+          ENTRY_LABEL: ${{ steps.parse.outputs.label }}
+          ISSUE_NUM:   ${{ github.event.issue.number }}
+          ISSUE_USER:  ${{ github.event.issue.user.login }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add "$DATA_FILE"
+          git commit -m "Add ${ENTRY_KIND}: ${ENTRY_ID} (closes #${ISSUE_NUM})"
+          git push origin "$BRANCH"
+
+          # Write PR body to a temp file to safely handle special characters
+          cat > /tmp/pr-body.md << PRBODY
+          Closes #${ISSUE_NUM}
+
+          Automatically generated from issue #${ISSUE_NUM} by @${ISSUE_USER}.
+
+          **Please review \`${DATA_FILE}\` before merging** — especially:
+          - Field values look correct and complete
+          - \`id\` is unique and kebab-cased
+          - For datasets: fill in the \`papers\` array with IDs from \`data/papers.json\` if applicable
+          PRBODY
+
+          PR_URL=$(gh pr create \
+            --title  "$PR_TITLE" \
+            --body-file /tmp/pr-body.md \
+            --label  "$ENTRY_LABEL" \
+            --head   "$BRANCH")
+
+          gh issue comment "$ISSUE_NUM" --body \
+            "Thanks @${ISSUE_USER}! A pull request has been automatically opened: ${PR_URL}
+
+          A maintainer will review and merge it shortly. If anything looks off you can edit the JSON directly in the PR."
+
+      # ── Comment with the parse error so the submitter can fix it (failure) ─
+      - name: Comment on parse failure
+        if: steps.parse.outputs.success == 'false'
+        env:
+          GH_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          ERROR_MSG: ${{ steps.parse.outputs.error }}
+        run: |
+          gh issue comment "$ISSUE_NUM" --body \
+            "⚠️ Could not automatically create a pull request.
+
+          **Reason:** ${ERROR_MSG}
+
+          Please check that all required fields are filled in and resubmit, or open a PR manually following [CONTRIBUTING.md](https://github.com/${{ github.repository }}/blob/main/CONTRIBUTING.md)."
