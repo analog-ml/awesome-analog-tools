@@ -132,54 +132,6 @@
     "owner": "google"
   },
   {
-    "id": "ihp-sg13g2",
-    "name": "IHP Open PDK (SG13G2)",
-    "description": "Open-source 130nm BiCMOS PDK from IHP Microelectronics. Features SiGe HBTs for RF and high-speed analog applications.",
-    "url": "https://github.com/IHP-GmbH/IHP-Open-PDK",
-    "website": "https://ihp-open-pdk-docs.readthedocs.io/",
-    "category": "pdk",
-    "tags": ["PDK", "BiCMOS", "SiGe", "RF", "130nm"],
-    "license": "Apache-2.0",
-    "stars": 720,
-    "owner": "IHP-GmbH"
-  },
-  {
-    "id": "openems",
-    "name": "openEMS",
-    "description": "Free and open-source FDTD electromagnetic field solver. Supports 3D EM simulation for antenna, RF, and microwave component design.",
-    "url": "https://github.com/thliebig/openEMS",
-    "website": "https://www.openems.de/",
-    "category": "rf-microwave",
-    "tags": ["C++", "FDTD", "EM", "antenna", "Matlab", "Python"],
-    "license": "GPL-3.0",
-    "stars": 880,
-    "owner": "thliebig"
-  },
-  {
-    "id": "scikit-rf",
-    "name": "scikit-rf",
-    "description": "Python package for RF and microwave engineering. Handles S-parameter analysis, network synthesis, and calibration routines.",
-    "url": "https://github.com/scikit-rf/scikit-rf",
-    "website": "https://scikit-rf.org/",
-    "category": "rf-microwave",
-    "tags": ["Python", "S-parameters", "microwave", "calibration"],
-    "license": "BSD",
-    "stars": 1100,
-    "owner": "scikit-rf"
-  },
-  {
-    "id": "openfasoc",
-    "name": "OpenFASOC",
-    "description": "Fully open-source autonomous analog/mixed-signal IC generation framework. Generates GDS layouts and SPICE netlists from high-level specifications.",
-    "url": "https://github.com/idea-fasoc/OpenFASOC",
-    "website": "https://openfasoc.readthedocs.io/",
-    "category": "mixed-signal",
-    "tags": ["Python", "automation", "synthesis", "layout"],
-    "license": "Apache-2.0",
-    "stars": 770,
-    "owner": "idea-fasoc"
-  },
-  {
     "id": "align",
     "name": "ALIGN",
     "description": "Analog Layout, Intelligently Generated from Netlists. Automates analog layout generation from SPICE netlists targeting open PDKs.",
@@ -190,42 +142,6 @@
     "license": "BSD",
     "stars": 330,
     "owner": "ALIGN-analoglayout"
-  },
-  {
-    "id": "pymeasure",
-    "name": "PyMeasure",
-    "description": "Scientific measurement library for instruments and experiments. Simplifies instrument control and experiment automation for lab measurements.",
-    "url": "https://github.com/pymeasure/pymeasure",
-    "website": "https://pymeasure.readthedocs.io/",
-    "category": "characterization",
-    "tags": ["Python", "measurement", "instruments", "GPIB", "VISA"],
-    "license": "MIT",
-    "stars": 1800,
-    "owner": "pymeasure"
-  },
-  {
-    "id": "bag-framework",
-    "name": "BAG",
-    "description": "Berkeley Analog Generator framework for creating process-portable analog and mixed-signal circuit generators using Python.",
-    "url": "https://github.com/ucb-art/BAG_framework",
-    "website": "https://bag3-readthedocs.readthedocs.io/",
-    "category": "framework",
-    "tags": ["Python", "generator", "layout", "schematic"],
-    "license": "BSD",
-    "stars": 270,
-    "owner": "ucb-art"
-  },
-  {
-    "id": "openvaf",
-    "name": "OpenVAF",
-    "description": "Modern Verilog-A compiler designed for compact device model development. Produces OSDI-compatible shared libraries for use in circuit simulators.",
-    "url": "https://github.com/pascalkuthe/OpenVAF",
-    "website": "https://openvaf.semimod.de/",
-    "category": "framework",
-    "tags": ["Rust", "Verilog-A", "compact-model", "OSDI"],
-    "license": "GPL-3.0",
-    "stars": 290,
-    "owner": "pascalkuthe"
   },
   {
     "id": "gtkwave",
@@ -250,30 +166,6 @@
     "license": "MIT",
     "stars": 130,
     "owner": "gmagno"
-  },
-  {
-    "id": "nazca",
-    "name": "Nazca Design",
-    "description": "Python photonic chip design framework. Builds mask layouts for photonic integrated circuits with a connector-based paradigm.",
-    "url": "https://github.com/nazca-design/nazca",
-    "website": "https://nazca-design.org/",
-    "category": "layout",
-    "tags": ["Python", "photonics", "PIC", "GDS"],
-    "license": "AGPL-3.0",
-    "stars": 190,
-    "owner": "nazca-design"
-  },
-  {
-    "id": "netket",
-    "name": "SciPy Optimize (analog use)",
-    "description": "Although general-purpose, SciPy's optimization and signal processing modules are heavily used for analog filter design and parameter extraction.",
-    "url": "https://github.com/scipy/scipy",
-    "website": "https://scipy.org/",
-    "category": "research",
-    "tags": ["Python", "optimization", "signal-processing", "filter-design"],
-    "license": "BSD",
-    "stars": 13000,
-    "owner": "scipy"
   },
   {
     "id": "iic-osic-tools",
