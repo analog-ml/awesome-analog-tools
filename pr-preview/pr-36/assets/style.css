@@ -318,6 +318,9 @@ header {
 .venue-JSSC      { background: #fef9c3; color: #92400e; }
 .venue-ESSDERC  { background: #fef3c7; color: #b45309; }
 .venue-arXiv     { background: #f1f5f9; color: #475569; }
+.venue-ICML      { background: #ccfbf1; color: #0f766e; }
+.venue-AAAI      { background: #e0e7ff; color: #3730a3; }
+.venue-MLCAD     { background: #ffe4e6; color: #be123c; }
 .venue-SCIENCE\ CHINA { background: #fdf2f8; color: #be185d; }
 
 .task-pill {
