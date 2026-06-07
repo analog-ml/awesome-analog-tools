@@ -94,7 +94,7 @@ The CI workflow validates all three JSON files on every PR — fix any schema er
 
 **Required fields:** `id`, `title`, `abstract`, `venue`, `year`, `pdf`, `tasks`, `methods`, `repos`
 
-**Valid tasks:** `analog-layout`, `circuit-sizing`, `placement`, `routing`, `schematic-generation`, `device-modeling`, `performance-prediction`, `parasitic-extraction`, `full-flow`, `yield-optimization`
+**Valid tasks:** `analog-layout`, `circuit-design`, `circuit-representation`, `circuit-sizing`, `code-generation`, `constraint-generation`, `device-modeling`, `floorplanning`, `full-flow`, `multi-objective-optimization`, `netlist-generation`, `noise-modeling`, `parasitic-extraction`, `performance-prediction`, `placement`, `routing`, `schematic-generation`, `sensitivity-analysis`, `technology-mapping`, `topology-generation`, `topology-modeling`, `topology-selection`, `topology-synthesis`, `transfer-learning`, `variation-analysis`, `yield-optimization`
 
 **Accepted venues (non-exhaustive):** DAC, ICCAD, DATE, TCAD, TCAS, CICC, ISPD, JSSC, ESSDERC, JOSS, arXiv
 
