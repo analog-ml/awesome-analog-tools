@@ -47,14 +47,30 @@ body:
       multiple: true
       options:
         - analog-layout
+        - circuit-design
+        - circuit-representation
         - circuit-sizing
+        - code-generation
+        - constraint-generation
+        - device-modeling
+        - floorplanning
+        - full-flow
+        - multi-objective-optimization
+        - netlist-generation
+        - noise-modeling
+        - parasitic-extraction
+        - performance-prediction
         - placement
         - routing
         - schematic-generation
-        - device-modeling
-        - performance-prediction
-        - parasitic-extraction
-        - full-flow
+        - sensitivity-analysis
+        - technology-mapping
+        - topology-generation
+        - topology-modeling
+        - topology-selection
+        - topology-synthesis
+        - transfer-learning
+        - variation-analysis
         - yield-optimization
     validations:
       required: true
