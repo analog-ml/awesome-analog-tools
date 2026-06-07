@@ -23,7 +23,7 @@
   },
   {
     "id": "analoggym-an-open-and-practical-testing-suite-for-",
-    "name": "AnalogGym: An Open and Practical Testing Suite for Analog Circuit Synthesis",
+    "name": "AnalogGym",
     "description": "AnalogGym encompasses 30 circuit topologies in five key categories: sensing front ends, voltage references, AMPs, low dropout regulators (LDOs), and phase-locked loops (PLLs). Among these, the LDOs and AMPs support the open-source Ngspice simulator and the SkyWater PDK, allowing for greater accessibility and reproducibility.",
     "url": "https://github.com/CODA-Team/AnalogGym",
     "website": "https://github.com/CODA-Team/AnalogGym",
@@ -44,7 +44,7 @@
   },
   {
     "id": "ams-io-bench-and-ams-io-agent-benchmarking-and-str",
-    "name": "AMS-IO-Bench and AMS-IO-Agent: Benchmarking and Structured Reasoning  for Analog and Mixed-Signal Integrated Circuit Input/Output Design",
+    "name": "AMS-IO-Bench",
     "description": "A comprehensive benchmark dataset for automated IC IO ring generation using LLMs in Cadence Virtuoso.",
     "url": "https://github.com/Arcadia-1/AMS-IO-Bench",
     "website": "https://github.com/Arcadia-1/AMS-IO-Agent",
