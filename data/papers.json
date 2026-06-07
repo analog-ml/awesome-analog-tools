@@ -390,5 +390,30 @@
         "stars": 15
       }
     ]
+  },
+  {
+    "id": "analoggenie-lite-enhancing-sc-2025",
+    "title": "AnalogGenie-Lite: Enhancing Scalability and Precision in Circuit Topology Discovery through Lightweight Graph Modeling",
+    "abstract": "AnalogGenie-Lite is a decoder-only transformer for discovering analog circuit topologies using a lightweight graph representation. It introduces linear-complexity device-pin encoding, subgraph mining, and optimized sequence modeling, achieving significantly better scalability and validity than prior methods.",
+    "venue": "ICML",
+    "year": 2025,
+    "pdf": "https://proceedings.mlr.press/v267/gao25a.html",
+    "tasks": [
+      "device-modeling"
+    ],
+    "methods": [
+      "circuit-design",
+      "topology-discovery",
+      "graph-modeling",
+      "circuit-synthesis",
+      "subgraph-mining"
+    ],
+    "repos": [
+      {
+        "name": "xz-group/AnalogGenie-Lite",
+        "url": "https://github.com/xz-group/AnalogGenie-Lite",
+        "stars": 2
+      }
+    ]
   }
 ]
