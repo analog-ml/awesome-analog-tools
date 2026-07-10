@@ -1,0 +1,606 @@
+[
+  {
+    "id": "align-2019",
+    "title": "ALIGN: Open-Source Analog Layout Automation from the Ground Up",
+    "abstract": "We present ALIGN, an open-source, fully automated analog layout tool that translates SPICE netlists to design-rule-correct GDS layouts. ALIGN encodes layout symmetry, device pairing, common-centroid placement, and shielding constraints extracted directly from the netlist topology.",
+    "venue": "DAC",
+    "year": 2019,
+    "pdf": "https://dl.acm.org/doi/10.1145/3316781.3323471",
+    "tasks": [
+      "analog-layout",
+      "placement",
+      "routing"
+    ],
+    "methods": [
+      "constraint-based",
+      "ILP",
+      "optimization"
+    ],
+    "repos": [
+      {
+        "name": "ALIGN-analoglayout/ALIGN-public",
+        "url": "https://github.com/ALIGN-analoglayout/ALIGN-public",
+        "stars": 330
+      }
+    ]
+  },
+  {
+    "id": "magical-2019",
+    "title": "MAGICAL: Toward Fully Automated Analog IC Layout Leveraging Human and Machine Intelligence",
+    "abstract": "MAGICAL is a fully automated analog IC layout system that combines human design knowledge encoded as layout constraints with machine intelligence for placement and routing. The system generates DRC-clean layouts from SPICE netlists targeting advanced FinFET processes.",
+    "venue": "ICCAD",
+    "year": 2019,
+    "pdf": "https://ieeexplore.ieee.org/document/8942060",
+    "tasks": [
+      "analog-layout",
+      "placement",
+      "routing"
+    ],
+    "methods": [
+      "constraint-graph",
+      "SMT-solver",
+      "optimization"
+    ],
+    "repos": [
+      {
+        "name": "magical-eda/MAGICAL",
+        "url": "https://github.com/magical-eda/MAGICAL",
+        "stars": 110
+      }
+    ]
+  },
+  {
+    "id": "autockt-2020",
+    "title": "AutoCkt: Deep Reinforcement Learning of Analog Circuit Designs",
+    "abstract": "AutoCkt applies deep reinforcement learning to automate analog circuit sizing. A trained RL agent navigates the design space of transistor sizes and bias currents to meet user-specified performance targets, demonstrating transfer learning across circuit topologies.",
+    "venue": "DATE",
+    "year": 2020,
+    "pdf": "https://arxiv.org/abs/2001.01808",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "reinforcement-learning",
+      "deep-learning",
+      "transfer-learning"
+    ],
+    "repos": [
+      {
+        "name": "ksettaluri6/AutoCkt",
+        "url": "https://github.com/ksettaluri6/AutoCkt",
+        "stars": 150
+      }
+    ]
+  },
+  {
+    "id": "gnn-analog-sizing-2021",
+    "title": "GCN-RL Circuit Designer: Transferable Transistor Sizing with Graph Neural Networks and Reinforcement Learning",
+    "abstract": "This paper introduces a learning-based framework for automatic transistor sizing using graph convolutional networks combined with reinforcement learning. By representing circuits as graphs, the model transfers knowledge across different technologies and circuit topologies to improve optimization efficiency.",
+    "venue": "DAC",
+    "year": 2020,
+    "pdf": "https://ieeexplore.ieee.org/document/9474226",
+    "tasks": [
+      "circuit-sizing",
+      "performance-prediction"
+    ],
+    "methods": [
+      "gnn",
+      "reinforcement-learning"
+    ],
+    "repos": [
+      {
+        "name": "envs/circuit",
+        "url": "https://github.com/park-project/park/tree/master/park/envs/circuit",
+        "stars": 231
+      }
+    ]
+  },
+  {
+    "id": "ppaas-pvt-and-pareto-aware-an-2025",
+    "title": "PPAAS: PVT and Pareto Aware Analog Sizing via Goal-conditioned Reinforcement Learning",
+    "abstract": "The paper proposes a goal-conditioned reinforcement learning framework for analog device sizing that generalizes across diverse design targets and PVT corners. Its main contributions are a Pareto-front-based goal sampling strategy, conservative hindsight replay, and a skip-on-fail simulation method, which together improve training and simulation efficiency.",
+    "venue": "ICCAD",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2507.17003",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "PVT",
+      "goal-conditioned",
+      "reinforcement-learning",
+      "HER",
+      "skip-on-fail"
+    ],
+    "repos": [
+      {
+        "name": "SeunggeunKimkr/PPAAS",
+        "url": "https://github.com/SeunggeunKimkr/PPAAS",
+        "stars": 15
+      }
+    ]
+  },
+  {
+    "id": "simultaneous-multi-topology-mu-2007",
+    "title": "Simultaneous Multi-Topology Multi-Objective Sizing  Across Thousands of Analog Circuit Topologies",
+    "abstract": "MOJITO is a system for simultaneously optimizing thousands of analog circuit topologies to produce a diverse set of designs that trade off performance metrics. It represents the search space using hierarchical combinations of trusted analog building blocks and avoids manual rule specification by relying on SPICE-based evaluation. The system uses a multi-objective evolutionary algorithm with an age-layered population structure to balance exploration and exploitation, and it is demonstrated on 3,528 operational amplifier topologies.",
+    "venue": "DAC",
+    "year": 2007,
+    "pdf": "https://ieeexplore.ieee.org/document/4261319",
+    "tasks": [
+      "circuit-sizing",
+      "performance-prediction"
+    ],
+    "methods": [
+      "evolutionary-algorithm",
+      "topology-search",
+      "hierarchical-design"
+    ],
+    "repos": [
+      {
+        "name": "trentmc/mojito",
+        "url": "https://github.com/trentmc/mojito",
+        "stars": 12
+      }
+    ]
+  },
+  {
+    "id": "analoggenie-lite-enhancing-sc-2025",
+    "title": "AnalogGenie-Lite: Enhancing Scalability and Precision in Circuit Topology Discovery through Lightweight Graph Modeling",
+    "abstract": "AnalogGenie-Lite is a decoder-only transformer for discovering analog circuit topologies using a lightweight graph representation. It introduces linear-complexity device-pin encoding, subgraph mining, and optimized sequence modeling, achieving significantly better scalability and validity than prior methods.",
+    "venue": "ICML",
+    "year": 2025,
+    "pdf": "https://proceedings.mlr.press/v267/gao25a.html",
+    "tasks": [
+      "topology-modeling"
+    ],
+    "methods": [
+      "circuit-design",
+      "topology-discovery",
+      "graph-modeling",
+      "circuit-synthesis",
+      "subgraph-mining"
+    ],
+    "repos": [
+      {
+        "name": "xz-group/AnalogGenie-Lite",
+        "url": "https://github.com/xz-group/AnalogGenie-Lite",
+        "stars": 2
+      }
+    ]
+  },
+  {
+    "id": "kclnet-electrically-equivalen-2025",
+    "title": "KCLNet: Electrically Equivalence-Oriented Graph Representation Learning for Analog Circuits",
+    "abstract": "KCLNet is a graph representation learning framework for analog circuits that incorporates electrical priors, specifically Kirchhoff\u2019s Current Law, to guide message passing in a DAG-based circuit representation. By enforcing current-conservation constraints through an asynchronous GNN and contrastive learning, it learns physically consistent circuit embeddings that improve performance on tasks like circuit classification, subcircuit detection, and graph edit distance prediction.",
+    "venue": "AAAI",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2603.24101",
+    "tasks": [
+      "circuit-representation"
+    ],
+    "methods": [
+      "circuit-representation",
+      "gnn",
+      "kirchhoffs",
+      "pinn",
+      "contrastive-learning",
+      "subcircuit-detection"
+    ],
+    "repos": [
+      {
+        "name": "shipxu123/KCLNet",
+        "url": "https://github.com/shipxu123/KCLNet",
+        "stars": 3
+      }
+    ]
+  },
+  {
+    "id": "differentiable-neural-network-2023",
+    "title": "Differentiable Neural Network Surrogate Models for gm/ID-based Analog IC Sizing Optimization",
+    "abstract": "This paper presents an improved optimization flow for analog integrated circuit sizing that integrates the gm/ID design methodology with machine learning\u2013based surrogate models. It replaces expensive circuit simulations with neural networks that predict performance metrics, achieving ~3400\u00d7 speedup and enabling gradient-based optimization methods like automatic differentiation. The approach is demonstrated on operational amplifier sizing and supports better reuse of designs across technology nodes.",
+    "venue": "MLCAD",
+    "year": 2023,
+    "pdf": "https://ieeexplore.ieee.org/document/10299834",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "circuit-sizing",
+      "gm/id-method",
+      "optimization-flow",
+      "op-amp-design",
+      "automatic-differentiation",
+      "technology-migration"
+    ],
+    "repos": [
+      {
+        "name": "electronics-and-drives/MLCAD2023",
+        "url": "https://github.com/electronics-and-drives/MLCAD2023",
+        "stars": 5
+      }
+    ]
+  },
+  {
+    "id": "white-box-op-amp-design-2026",
+    "title": "White-Box Op-Amp Design via Human-Mimicking Reasoning",
+    "abstract": "White-Op is an open-source op-amp design framework via agentic human-mimicking reasoning. The agent introduces extra constraints to derive and position PZs, formulating a mathematical problem solved programmatically and verified via simulation. ",
+    "venue": "arXiv",
+    "year": 2026,
+    "pdf": "https://arxiv.org/html/2601.21321v1",
+    "tasks": [
+      "topology-modeling"
+    ],
+    "methods": [
+      "llm",
+      "optimization-flow",
+      "op-amp-design",
+      "mathematical-reasoning"
+    ],
+    "repos": [
+      {
+        "name": "zhchenfdu/whiteop",
+        "url": "https://github.com/zhchenfdu/whiteop",
+        "stars": 4
+      }
+    ]
+  },
+  {
+    "id": "analogtobi-device-level-to-2026",
+    "title": "AnalogToBi: Device-Level Analog Circuit Topology Generation via Bipartite Graph and Grammar Guided Decoding",
+    "abstract": "AnalogToBi is a framework for device-level analog circuit topology generation that addresses low electrical validity and memorization in transformer-based methods. It introduces circuit-type conditioning, device renaming augmentation, a bipartite graph representation for structural generalization, and grammar-guided decoding to enforce validity during generation — achieving high validity and novelty without human-in-the-loop training.",
+    "venue": "arXiv",
+    "year": 2026,
+    "pdf": "https://arxiv.org/abs/2603.08720",
+    "tasks": [
+      "topology-modeling"
+    ],
+    "methods": [
+      "transformer",
+      "bipartite-graph",
+      "grammar-guided-decoding",
+      "augmentation"
+    ],
+    "repos": [
+      {
+        "name": "Seungmin0825/AnalogToBi",
+        "url": "https://github.com/Seungmin0825/AnalogToBi",
+        "stars": 3
+      }
+    ]
+  },
+  {
+    "id": "dice-device-level-ic-encoder-2025",
+    "title": "DICE: Device-level Integrated Circuits Encoder with Graph Contrastive Pretraining",
+    "abstract": "DICE is the first GNN pretrained via self-supervised graph contrastive learning specifically for graph-level prediction tasks in both analog and digital circuits. It adopts a simulation-free pretraining approach with two novel graph augmentation techniques, achieving substantial improvements across three downstream tasks: circuit similarity prediction, delay prediction, and op-amp performance metric prediction.",
+    "venue": "arXiv",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2502.08949",
+    "tasks": [
+      "circuit-representation",
+      "performance-prediction"
+    ],
+    "methods": [
+      "gnn",
+      "contrastive-learning",
+      "self-supervised-learning",
+      "graph-augmentation"
+    ],
+    "repos": [
+      {
+        "name": "brianlsy98/DICE",
+        "url": "https://github.com/brianlsy98/DICE",
+        "stars": 0
+      }
+    ]
+  },
+  {
+    "id": "panda-llm-enhanced-analog-2026",
+    "title": "PANDA: An LLM-Enhanced Performance-Driven Analog Design Framework Bridging Design Intent and Layout Generation",
+    "abstract": "PANDA is an LLM-enhanced framework that bridges high-level design intent to final layout by actively managing cross-stage dependencies through guided topology synthesis, substructure-aware sizing, and constraint-driven layout generation. It shifts automation from algorithm-centric execution to intent-centric co-design, reducing turnaround time from days or weeks to hours while improving design performance.",
+    "venue": "arXiv",
+    "year": 2026,
+    "pdf": "https://arxiv.org/abs/2606.15052",
+    "tasks": [
+      "full-flow",
+      "topology-modeling",
+      "circuit-sizing",
+      "analog-layout",
+      "placement",
+      "routing"
+    ],
+    "methods": [
+      "llm",
+      "bayesian-optimization",
+      "constraint-based"
+    ],
+    "repos": [
+      {
+        "name": "PKU-IDEA/PANDA",
+        "url": "https://github.com/PKU-IDEA/PANDA",
+        "stars": 0
+      }
+    ]
+  },
+  {
+    "id": "zoaf-zeroth-order-analog-rf-2026",
+    "title": "ZOAF: Towards Efficient Zeroth-Order Optimization for Analog/RF Circuit Design",
+    "abstract": "ZOAF is a zeroth-order optimization framework for analog/RF circuit sizing that recovers gradient-descent directions from a small number of black-box circuit simulations, combining benefits of gradient-based and black-box optimization. It employs a hybrid ZO scheduling method, quasi-random multi-start initialization, and a sliding-window feasibility monitor, consistently outperforming state-of-the-art baselines across three benchmarks while reducing simulator calls to convergence by 1.3–3.8×.",
+    "venue": "arXiv",
+    "year": 2026,
+    "pdf": "https://arxiv.org/abs/2606.02869",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "zeroth-order-optimization",
+      "black-box-optimization",
+      "multi-start"
+    ],
+    "repos": [
+      {
+        "name": "LiyanTan111/ZOAF",
+        "url": "https://github.com/LiyanTan111/ZOAF",
+        "stars": 0
+      }
+    ]
+  },
+  {
+    "id": "rose-opt-robust-efficient-analog-2024",
+    "title": "RoSE-Opt: Robust and Efficient Analog Circuit Parameter Optimization with Knowledge-infused Reinforcement Learning",
+    "abstract": "RoSE-Opt is a knowledge-infused BO-RL framework for robust and efficient analog circuit parameter optimization. It incorporates circuit topology, inter-specification couplings, and PVT variations into the learning loop, and exploits two-level optimization by combining Bayesian optimization for an initial search with RL for fine-grained tuning, achieving superior sample efficiency and Pareto-optimal circuit performance.",
+    "venue": "TCAD",
+    "year": 2024,
+    "pdf": "https://arxiv.org/abs/2407.19150",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "bayesian-optimization",
+      "reinforcement-learning",
+      "PVT"
+    ],
+    "repos": [
+      {
+        "name": "xz-group/RoSE",
+        "url": "https://github.com/xz-group/RoSE",
+        "stars": 23
+      }
+    ]
+  },
+  {
+    "id": "llana-llm-enhanced-bayesian-layout-2024",
+    "title": "LLM-Enhanced Bayesian Optimization for Efficient Analog Layout Constraint Generation",
+    "abstract": "LLANA leverages LLMs' few-shot learning capabilities to enhance Bayesian optimization for analog layout constraint generation. By exploiting LLMs' superior contextual understanding, the framework achieves performance comparable to state-of-the-art BO methods while enabling more effective exploration of the analog circuit design space with fewer data requirements.",
+    "venue": "arXiv",
+    "year": 2024,
+    "pdf": "https://arxiv.org/abs/2406.05250",
+    "tasks": [
+      "analog-layout",
+      "constraint-generation"
+    ],
+    "methods": [
+      "llm",
+      "bayesian-optimization"
+    ],
+    "repos": [
+      {
+        "name": "dekura/LLANA",
+        "url": "https://github.com/dekura/LLANA",
+        "stars": 31
+      }
+    ]
+  },
+  {
+    "id": "analoggenie-generative-engine-topology-2025",
+    "title": "AnalogGenie: A Generative Engine for Automatic Discovery of Analog Circuit Topologies",
+    "abstract": "AnalogGenie is a generative engine for automatic discovery of analog circuit topologies, addressing the lack of comprehensive analog circuit datasets and effective representation methods. It builds a foundational dataset of analog topologies and a scalable sequence-based graph representation, demonstrating remarkable generation performance in broadening circuit variety, increasing device complexity, and discovering unseen topologies beyond prior art.",
+    "venue": "ICLR",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2503.00205",
+    "tasks": [
+      "topology-modeling"
+    ],
+    "methods": [
+      "transformer",
+      "generative-model",
+      "graph-representation"
+    ],
+    "repos": [
+      {
+        "name": "xz-group/AnalogGenie",
+        "url": "https://github.com/xz-group/AnalogGenie",
+        "stars": 109
+      }
+    ]
+  },
+  {
+    "id": "eesizer-llm-agent-ams-sizing-2026",
+    "title": "LLM-based AI Agent for Sizing of Analog and Mixed Signal Circuit",
+    "abstract": "EEsizer is an LLM-based AI agent that integrates large language models with circuit simulators and custom data analysis functions for fully automated, closed-loop transistor sizing without external knowledge. Using prompt engineering and Chain-of-Thought reasoning, the agent iteratively evaluates performance and refines solutions, successfully optimizing a 20-transistor CMOS op-amp across 180 nm to 90 nm technology nodes.",
+    "venue": "TCAS-I",
+    "year": 2026,
+    "pdf": "https://arxiv.org/abs/2509.25510",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "llm",
+      "chain-of-thought",
+      "prompt-engineering"
+    ],
+    "repos": [
+      {
+        "name": "eelab-dev/EEsizer",
+        "url": "https://github.com/eelab-dev/EEsizer",
+        "stars": 29
+      }
+    ]
+  },
+  {
+    "id": "falcon-ml-framework-layout-constrained-2025",
+    "title": "FALCON: An ML Framework for Fully Automated Layout-Constrained Analog Circuit Design",
+    "abstract": "FALCON is a unified ML framework for fully automated analog circuit synthesis from performance specifications, covering topology selection, parameter inference, and layout-constrained optimization. It uses an edge-centric GNN for performance prediction and a differentiable layout cost for gradient-based parameter inference, achieving >99% topology accuracy and design completion in under 1 second on a dataset of 1M mm-wave circuits.",
+    "venue": "NeurIPS",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2505.21923",
+    "tasks": [
+      "full-flow",
+      "topology-selection",
+      "circuit-sizing",
+      "analog-layout"
+    ],
+    "methods": [
+      "gnn",
+      "gradient-based",
+      "topology-selection"
+    ],
+    "repos": [
+      {
+        "name": "AsalMehradfar/FALCON",
+        "url": "https://github.com/AsalMehradfar/FALCON",
+        "stars": 45
+      }
+    ]
+  },
+  {
+    "id": "ledro-llm-enhanced-design-space-2025",
+    "title": "LEDRO: LLM-Enhanced Design Space Reduction and Optimization for Analog Circuits",
+    "abstract": "LEDRO uses LLMs in conjunction with optimization techniques to iteratively refine the design space for analog circuit sizing, eliminating the need for design annotation or retraining across topologies and technology nodes. Evaluated on 22 op-amp topologies across four FinFET nodes, LEDRO outperforms BO and RL baselines with 13–48% FoM improvement and 1.7–2.15× speedup.",
+    "venue": "ICLAD",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2411.12930",
+    "tasks": [
+      "circuit-sizing"
+    ],
+    "methods": [
+      "llm",
+      "bayesian-optimization",
+      "reinforcement-learning"
+    ],
+    "repos": [
+      {
+        "name": "dimplekochar/LEDRO",
+        "url": "https://github.com/dimplekochar/LEDRO",
+        "stars": 15
+      }
+    ]
+  },
+  {
+    "id": "diffckt-diffusion-model-analog-2025",
+    "title": "DiffCkt: A Diffusion Model-Based Hybrid Neural Network Framework for Automatic Transistor-Level Generation of Analog Circuits",
+    "abstract": "DiffCkt is a diffusion model-based hybrid neural network framework that automatically generates transistor-level analog circuit structures and device parameters for specific performance requirements. Introducing the Circuit Generation Efficiency Index (CGEI) combining figure of merit and generation time, DiffCkt improves CGEI by 2.21–8365× over related work.",
+    "venue": "ICCAD",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2507.00444",
+    "tasks": [
+      "topology-modeling",
+      "circuit-sizing"
+    ],
+    "methods": [
+      "diffusion-model",
+      "gnn"
+    ],
+    "repos": [
+      {
+        "name": "CjLiu-NJU/DiffCkt",
+        "url": "https://github.com/CjLiu-NJU/DiffCkt",
+        "stars": 11
+      }
+    ]
+  },
+  {
+    "id": "analogseeker-foundation-lm-analog-2025",
+    "title": "AnalogSeeker: An Open-source Foundation Language Model for Analog Circuit Design",
+    "abstract": "AnalogSeeker is an open-source foundation language model for analog circuit design that addresses data scarcity through systematic textbook curation and a multi-agent knowledge distillation pipeline to generate fine-grained QA pairs with detailed reasoning. A neighborhood self-constrained supervised fine-tuning algorithm is applied to Qwen2.5-32B-Instruct, achieving 85.04% accuracy on AMSBench-TQA with a 15.67 percentage-point improvement over the base model.",
+    "venue": "arXiv",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2508.10409",
+    "tasks": [
+      "circuit-design"
+    ],
+    "methods": [
+      "llm",
+      "fine-tuning",
+      "knowledge-distillation"
+    ],
+    "repos": [
+      {
+        "name": "analogllm/analogseeker",
+        "url": "https://huggingface.co/analogllm/analogseeker",
+        "stars": 0
+      }
+    ]
+  },
+  {
+    "id": "analogsage-self-evolving-multi-agent-2025",
+    "title": "AnalogSAGE: Self-evolving Analog Design Multi-Agents with Stratified Memory and Grounded Experience",
+    "abstract": "AnalogSAGE is an open-source self-evolving multi-agent framework for analog circuit design that coordinates three-stage agent explorations through four stratified memory layers with simulation-grounded feedback. Evaluated on ten op-amp design problems under SKY130 PDK with ngspice, it achieves 10× overall pass rate, 48× Pass@1, and 4× reduction in parameter search space compared to existing frameworks.",
+    "venue": "arXiv",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2512.22435",
+    "tasks": [
+      "topology-modeling",
+      "circuit-sizing"
+    ],
+    "methods": [
+      "llm",
+      "multi-agent",
+      "memory"
+    ],
+    "repos": [
+      {
+        "name": "xz-group/AnalogSAGE",
+        "url": "https://github.com/xz-group/AnalogSAGE",
+        "stars": 15
+      }
+    ]
+  },
+  {
+    "id": "osiris-scalable-dataset-generation-2026",
+    "title": "OSIRIS: Bridging Analog Circuit Design and Machine Learning with Scalable Dataset Generation",
+    "abstract": "OSIRIS is a scalable dataset generation pipeline for analog IC design that systematically explores the design space while producing comprehensive performance metrics and metadata for ML-driven EDA research. The authors release 87,100 circuit variations alongside an RL-based baseline method for analog design optimization.",
+    "venue": "arXiv",
+    "year": 2026,
+    "pdf": "https://arxiv.org/abs/2601.19439",
+    "tasks": [
+      "circuit-sizing",
+      "performance-prediction"
+    ],
+    "methods": [
+      "reinforcement-learning",
+      "dataset-generation"
+    ],
+    "repos": [
+      {
+        "name": "hardware-fab/osiris",
+        "url": "https://huggingface.co/datasets/hardware-fab/osiris",
+        "stars": 0
+      }
+    ]
+  },
+  {
+    "id": "analogcoder-training-free-code-gen-2025",
+    "title": "AnalogCoder: Analog Circuit Design via Training-Free Code Generation",
+    "abstract": "AnalogCoder is the first training-free LLM agent for analog circuit design via Python code generation, featuring a feedback-enhanced flow with domain-specific prompts and a reusable modular sub-circuit library. It successfully designs 20 circuits — 5 more than standard GPT-4o — on a benchmark covering a wide range of analog circuit tasks.",
+    "venue": "AAAI",
+    "year": 2025,
+    "pdf": "https://arxiv.org/abs/2405.14918",
+    "tasks": [
+      "circuit-design",
+      "code-generation"
+    ],
+    "methods": [
+      "llm",
+      "chain-of-thought",
+      "prompt-engineering"
+    ],
+    "repos": [
+      {
+        "name": "laiyao1/AnalogCoder",
+        "url": "https://github.com/laiyao1/AnalogCoder",
+        "stars": 179
+      }
+    ]
+  }
+]
