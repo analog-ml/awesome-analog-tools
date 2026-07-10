@@ -61,5 +61,96 @@
       "ring-generation",
       "LLM"
     ]
+  },
+  {
+    "id": "amsnet-kg",
+    "name": "AMSnet-KG",
+    "description": "AMS circuit schematics and SPICE netlists annotated with a knowledge graph capturing functional and performance characteristics. Enables LLM-based AMS circuit auto-design via knowledge graph RAG: the framework retrieves matched circuit components, assembles topologies, and performs transistor sizing through Bayesian optimization with simulation feedback.",
+    "url": "https://github.com/AMS-Net/ams-net.github.io",
+    "website": "https://github.com/AMS-Net/ams-net.github.io",
+    "tasks": [
+      "netlist-generation",
+      "circuit-design",
+      "circuit-sizing"
+    ],
+    "size": "",
+    "format": "SPICE",
+    "license": "GPL-3.0",
+    "papers": [],
+    "tags": [
+      "knowledge-graph",
+      "RAG",
+      "SPICE",
+      "schematics",
+      "op-amp",
+      "comparator",
+      "LLM"
+    ]
+  },
+  {
+    "id": "masala-chai",
+    "name": "Masala-CHAI",
+    "description": "7,500 analog circuit schematics extracted from 10 textbooks, each paired with an AI-generated SPICE netlist. Designed to fine-tune LLMs for schematic-to-netlist generation; models fine-tuned on this dataset achieve a 46% improvement in Pass@1 scores on LLM-agentic frameworks.",
+    "url": "https://github.com/jitendra-bhandari/Masala-CHAI",
+    "website": "https://github.com/jitendra-bhandari/Masala-CHAI",
+    "tasks": [
+      "netlist-generation",
+      "schematic-generation"
+    ],
+    "size": "~7,500 schematics",
+    "format": "PNG, SPICE",
+    "license": "N/A",
+    "papers": [],
+    "tags": [
+      "schematic-to-netlist",
+      "LLM",
+      "SPICE",
+      "image-based",
+      "textbook"
+    ]
+  },
+  {
+    "id": "analogseeker",
+    "name": "AnalogSeeker",
+    "description": "Textbook-derived analog circuit design QA corpus used to train AnalogSeeker, an open-source 32B foundation language model (Qwen2.5-based) for analog design assistance. The training data is constructed via a multi-agent knowledge distillation pipeline from domain textbooks; the model achieves 85.04% accuracy on the AMSBench-TQA benchmark.",
+    "url": "https://huggingface.co/analogllm/analogseeker",
+    "website": "https://huggingface.co/analogllm/analogseeker",
+    "tasks": [
+      "circuit-design"
+    ],
+    "size": "",
+    "format": "QA pairs",
+    "license": "other",
+    "papers": [],
+    "tags": [
+      "LLM",
+      "foundation-model",
+      "QA",
+      "textbook",
+      "knowledge-distillation",
+      "fine-tuning",
+      "AMSBench"
+    ]
+  },
+  {
+    "id": "gana-circuit-data",
+    "name": "GANA Circuit Data",
+    "description": "OTA (Operational Transconductance Amplifier) circuit dataset in SPICE format for GNN-based automated netlist annotation. Provides adjacency matrices, node feature matrices, and binary label matrices for subcircuit identification, supporting the GANA framework published at DATE 2020.",
+    "url": "https://github.com/kkunal1408/GANA_circuit_data",
+    "website": "https://github.com/kkunal1408/GANA_circuit_data",
+    "tasks": [
+      "circuit-representation"
+    ],
+    "size": "",
+    "format": "SPICE, CSV",
+    "license": "N/A",
+    "papers": [],
+    "tags": [
+      "GNN",
+      "OTA",
+      "netlist-annotation",
+      "SPICE",
+      "subcircuit-detection"
+    ]
   }
 ]
